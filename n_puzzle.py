@@ -95,16 +95,16 @@ n = 0
 
 def getInput():
     global method, m, n, goal, start
-    method = raw_input()
-    m = int (raw_input())
-    n = int (raw_input())
+    method = input()
+    m = int (input())
+    n = int (input())
     tiles = []
     for i in range(n):
-        tiles.append(raw_input().split(" "))
+        tiles.append(input().split(" "))
     start.tiles = tiles
     tiles = []
     for i in range(n):
-        tiles.append(raw_input().split(" "))
+        tiles.append(input().split(" "))
     goal.tiles = tiles
     start.hgf()
 
@@ -175,7 +175,7 @@ def limitedSearch(node, limit):
 
 def printOutput(sol):
     global goal, n
-    print "SUCCESS\n"
+    print ("SUCCESS\n")
     path = []
     while(sol!=None):
         path.insert(0, sol)
@@ -185,10 +185,10 @@ def printOutput(sol):
         for j in range(n):
             for k in range(n):
                 if(k<n-1):
-                    print (state.tiles)[j][k],
+                    print ((state.tiles)[j][k]),
                 else:
-                    print (state.tiles)[j][k]
-        print "\n",
+                    print ((state.tiles)[j][k])
+        print ("\n"),
 
 def solve():
     global method, m, n, goal, start
@@ -200,7 +200,7 @@ def solve():
         solution = IDAstar()
 
     if(solution==None):
-        print "FAILURE"
+        print ("FAILURE")
     else:
         printOutput(solution)
 
