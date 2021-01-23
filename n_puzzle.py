@@ -80,13 +80,6 @@ class Node:
             ret.append(child)
         return ret
 
-    def isExp(self, exp):
-        tiles = self.tiles
-        for i in exp:
-            if (tiles == i.tiles) and (i.f<=self.f):
-                return i
-        return None
-
 start = Node()
 goal = Node()
 m = 0
