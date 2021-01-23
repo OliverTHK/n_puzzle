@@ -89,13 +89,11 @@ class Node:
 
 start = Node()
 goal = Node()
-method = ""
 m = 0
 n = 0
 
 def getInput():
-    global method, m, n, goal, start
-    method = input()
+    global m, n, goal, start
     m = int (input())
     n = int (input())
     tiles = []
@@ -108,15 +106,6 @@ def getInput():
     goal.tiles = tiles
     start.hgf()
 
-def findOpt(lst):
-    opt = lst[0]
-    index = 0
-    for i in range(len(lst)):  # type: Node
-        if lst[i].f < opt.f:
-            opt = lst[i]
-            index = i
-    return opt, index
-
 def findGoal(str): #find the correct place of a tile in goal
     global goal
     tiles = goal.tiles
@@ -124,27 +113,6 @@ def findGoal(str): #find the correct place of a tile in goal
         for j in range(n):
             if tiles[i][j] == str:
                 return i, j
-
-def Astar():
-    front = [start]
-    exp = []
-    while(1):
-        if len(front)==0:
-            return None
-
-        x, xIndex = findOpt(front)
-        del front[xIndex]
-
-        if(x.isGoal() and x.f<=m):
-            return x
-
-        if(x.isExp(exp) == None and x.f<=m):
-            exp.append(x)
-            successors = x.genChildren()
-            for i in successors:
-                front.append(i)
-
-    return None
 
 def IDAstar():
     fmax = start.f
@@ -185,19 +153,16 @@ def printOutput(sol):
         for j in range(n):
             for k in range(n):
                 if(k<n-1):
-                    print ((state.tiles)[j][k]),
+                    print ((state.tiles)[j][k] + " ", end="")
                 else:
                     print ((state.tiles)[j][k])
         print ("\n"),
 
 def solve():
-    global method, m, n, goal, start
+    global m, n, goal, start
     getInput()
     solution = None
-    if method == "A*":
-        solution = Astar()
-    else:
-        solution = IDAstar()
+    solution = IDAstar()
 
     if(solution==None):
         print ("FAILURE")
