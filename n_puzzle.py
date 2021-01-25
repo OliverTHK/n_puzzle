@@ -19,7 +19,8 @@ class Node:
                 if tiles[i][j] == '_':
                     return i, j
 
-    def hgf(self):  # calculate the manhattan distance
+
+    def calculate_fgh2(self):  # calculate f(n), g(n), and h(n) using h2: euclidean distance
         sum = 0
         tiles = self.tiles
         if self == start:
@@ -29,7 +30,7 @@ class Node:
                         continue
                     else:
                         x, y = findGoal(tiles[i][j])
-                        sum += abs(x - i) + abs(y - j)
+                        sum += round(((i - x)**2 + (j - y)**2)**(1/2))
             self.h = sum
             self.g = 0
             self.f = sum
@@ -40,7 +41,7 @@ class Node:
                         continue
                     else:
                         x, y = findGoal(tiles[i][j])
-                        sum += abs(x - i) + abs(y - j)
+                        sum += round(((i - x)**2 + (j - y)**2)**(1/2))
             self.h = sum
             self.g = self.parent.g + 1
             self.f = self.g + sum
@@ -72,7 +73,7 @@ class Node:
         ret = []
         for i in newTiles:  # create children nodes
             child = Node(i, self)
-            child.hgf()
+            child.calculate_fgh2()
             ret.append(child)
         return ret
 
@@ -98,7 +99,7 @@ def getInput():
         tiles.append(input().split(" "))
     goal.tiles = tiles
     print()
-    start.hgf()
+    start.calculate_fgh2()
 
 
 def findGoal(str):  # find the correct place of a tile in goal
