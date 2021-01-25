@@ -1,8 +1,3 @@
-#################################################################
-
-#                      AUTHOR: ZEYNEP OZALP                     #
-
-#################################################################
 import copy
 
 
@@ -84,13 +79,13 @@ class Node:
 
 start = Node()
 goal = Node()
-m = 0
+depth = 0
 n = 0
 
 
 def getInput():
-    global m, n, goal, start
-    m = 1000
+    global depth, n, goal, start
+    depth = 1000
     n = 3
     tiles = []
     print("INITIAL state input: ")
@@ -118,7 +113,7 @@ def findGoal(str):  # find the correct place of a tile in goal
 def IDAstar():
     fmax = start.f
     while(1):
-        if(fmax > m):
+        if(fmax > depth):
             return None
         node, newfmax = limitedSearch(start, fmax)
         if(node != None):
@@ -163,7 +158,7 @@ def printOutput(sol):
 
 
 def solve():
-    global m, n, goal, start
+    global depth, n, goal, start
     getInput()
     solution = None
     solution = IDAstar()
