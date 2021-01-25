@@ -16,7 +16,7 @@ class Node:
         tiles = self.tiles
         for i in range(n):
             for j in range(n):
-                if tiles[i][j] == '_':
+                if tiles[i][j] == '0':
                     return i, j
 
 
@@ -26,7 +26,7 @@ class Node:
         if self == start:
             for i in range(n):
                 for j in range(n):
-                    if tiles[i][j] == '_':
+                    if tiles[i][j] == '0':
                         continue
                     else:
                         x, y = findGoal(tiles[i][j])
@@ -37,7 +37,7 @@ class Node:
         else:
             for i in range(n):
                 for j in range(n):
-                    if tiles[i][j] == '_':
+                    if tiles[i][j] == '0':
                         continue
                     else:
                         x, y = findGoal(tiles[i][j])
@@ -53,22 +53,22 @@ class Node:
         if (x + 1) < n:  # moving blank down / moving a tile up
             new = copy.deepcopy(tiles)
             new[x][y] = new[x+1][y]
-            new[x+1][y] = '_'
+            new[x+1][y] = '0'
             newTiles.append(new)
         if (x - 1) > -1:  # moving blank up / moving a tile down
             new = copy.deepcopy(tiles)
             new[x][y] = new[x-1][y]
-            new[x-1][y] = '_'
+            new[x-1][y] = '0'
             newTiles.append(new)
         if (y + 1) < n:  # moving blank right / moving a tile left
             new = copy.deepcopy(tiles)
             new[x][y] = new[x][y+1]
-            new[x][y+1] = '_'
+            new[x][y+1] = '0'
             newTiles.append(new)
         if (y - 1) > -1:  # moving blank left / moving a tile right
             new = copy.deepcopy(tiles)
             new[x][y] = new[x][y - 1]
-            new[x][y-1] = '_'
+            new[x][y-1] = '0'
             newTiles.append(new)
         ret = []
         for i in newTiles:  # create children nodes
