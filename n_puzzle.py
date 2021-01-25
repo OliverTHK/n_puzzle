@@ -90,16 +90,19 @@ n = 0
 
 def getInput():
     global m, n, goal, start
-    m = int(input())
-    n = int(input())
+    m = 1000
+    n = 3
     tiles = []
+    print("INITIAL state input: ")
     for i in range(n):
         tiles.append(input().split(" "))
     start.tiles = tiles
     tiles = []
+    print("\nGOAL state input: ")
     for i in range(n):
         tiles.append(input().split(" "))
     goal.tiles = tiles
+    print()
     start.hgf()
 
 
